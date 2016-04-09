@@ -7,11 +7,15 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 public class MainActivity extends BaseActivity {
+    private static final String TAG = MainActivity.class.getName();
     protected TabLayout tabLayout;
     private ViewPager viewPager;
     protected NewsTabAdapter tabAdapter;
@@ -36,6 +40,54 @@ public class MainActivity extends BaseActivity {
         * */
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         viewPager.setCurrentItem(1);
+
+        if(tabLayout.getTabAt(0)!=null){
+            View v = LayoutInflater.from(this).inflate(R.layout.message_tab, null);
+            TextView tv = (TextView)v.findViewById(R.id.txt);
+            tv.setText("Kapil");
+            TextView msgCount = (TextView)v.findViewById(R.id.msg_count);
+            msgCount.setText("4");
+            TabLayout.Tab tab=tabLayout.getTabAt(0);
+            tab.setCustomView(v);
+
+        }
+        if(tabLayout.getTabAt(1)!=null){
+            View v = LayoutInflater.from(this).inflate(R.layout.message_tab, null);
+            TextView tv = (TextView)v.findViewById(R.id.txt);
+            tv.setText("Minal");
+            TextView msgCount = (TextView)v.findViewById(R.id.msg_count);
+            msgCount.setText("6");
+            TabLayout.Tab tab=tabLayout.getTabAt(1);
+            tab.setCustomView(v);
+
+        }
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+
+                Log.d(TAG,"Tab position:"+tab.getPosition());
+                if(tab.getPosition()<2) {
+                    View v = tab.getCustomView();
+                    TextView tv = (TextView)v.findViewById(R.id.txt);
+                    tv.setSelected(true);
+                    TextView msgCount = (TextView) v.findViewById(R.id.msg_count);
+                   msgCount.setVisibility(View.INVISIBLE);
+                    Log.d(TAG,"Hidden:"+tab.getPosition());
+                }
+
+
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
 
 
 

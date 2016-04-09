@@ -10,8 +10,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.Toast;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements View.OnClickListener {
     protected TabLayout tabLayout;
     private ViewPager viewPager;
     protected NewsTabAdapter tabAdapter;
@@ -37,7 +39,9 @@ public class MainActivity extends BaseActivity {
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         viewPager.setCurrentItem(1);
 
-
+        initilizeToolbar(false,"",false);
+        ImageView dollar= (ImageView) findViewById(R.id.dollar);
+        dollar.setOnClickListener(this);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -69,5 +73,14 @@ public class MainActivity extends BaseActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.dollar:
+                Toast.makeText(this,"Add any action here",Toast.LENGTH_LONG).show();
+                break;
+        }
     }
 }

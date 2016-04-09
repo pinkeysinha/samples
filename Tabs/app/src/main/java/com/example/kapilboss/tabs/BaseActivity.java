@@ -17,12 +17,12 @@ public class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState, persistentState);
     }
 
-    protected void initilizeToolbar(boolean backBtnEnabled, String title){
+    protected void initilizeToolbar(boolean backBtnEnabled, String title, boolean isElevated){
         Toolbar toolbar= (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(title);
         getSupportActionBar().setDisplayHomeAsUpEnabled(backBtnEnabled);
-        if(Build.VERSION.SDK_INT>=21){
+        if(Build.VERSION.SDK_INT>=21 && isElevated){
             getSupportActionBar().setElevation(10);
         }
     }

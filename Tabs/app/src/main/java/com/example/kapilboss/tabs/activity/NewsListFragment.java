@@ -1,4 +1,4 @@
-package com.example.kapilboss.tabs;
+package com.example.kapilboss.tabs.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.example.kapilboss.tabs.R;
 
 /**
  * Created by kapilboss on 08/04/16.

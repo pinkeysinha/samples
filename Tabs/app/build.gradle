@@ -1,6 +1,19 @@
 apply plugin: 'com.android.application'
+apply plugin: 'me.tatarka.retrolambda'
+apply plugin: 'com.neenbedankt.android-apt'
 
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+}
+def appName = "myapp"
 android {
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
 
@@ -17,6 +30,33 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    productFlavors {
+        production {
+            applicationId "com.example.kapilboss.tabs"
+
+            versionName "4.5.9"
+            versionCode 232
+
+            resValue "string", "app_name", appName
+            buildConfigField "String", "URL", "\"https://api.helpchat.in\""
+            buildConfigField "boolean", "IS_PRODUCTION", "true"
+
+        }
+
+        staging {
+            applicationId "com.example.kapilboss.tabs"
+            versionName "4.5.9"
+            versionCode 232
+
+            resValue "string", "app_name", "myapp"
+            buildConfigField "String", "URL", "\" http://172.16.1.145:8080\""
+            buildConfigField "boolean", "IS_PRODUCTION", "true"
+
+        }
+    }
+    lintOptions {
+        abortOnError false
+    }
 }
 
 dependencies {
@@ -24,4 +64,16 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.2.1'
     compile 'com.android.support:design:23.2.1'
+    compile 'com.trello:rxlifecycle-components:0.6.0'
+   /* compile 'com.squareup.dagger:dagger:1.2.+'
+    provided 'com.squareup.dagger:dagger-compiler:1.2.+'*/
+    compile 'io.reactivex:rxjava:1.0.14'
+    compile 'io.reactivex:rxandroid:1.0.1'
+
+    apt 'com.google.dagger:dagger-compiler:2.0.1'
+    compile 'com.google.dagger:dagger:2.0.1'
+    provided 'org.glassfish:javax.annotation:10.0-b28'
+   /* compile 'com.squareup.retrofit2:retrofit:2.0.2'
+    compile 'com.squareup.okhttp:okhttp:2.6.0'
+    compile 'com.squareup.okhttp:okhttp-urlconnection:2.6.0'*/
 }

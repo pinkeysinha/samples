@@ -1,4 +1,4 @@
-package com.example.kapilboss.tabs;
+package com.example.kapilboss.tabs.activity;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
